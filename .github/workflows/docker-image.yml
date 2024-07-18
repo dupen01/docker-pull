@@ -1,10 +1,15 @@
-name: build Docker Image to aliyun
+name: Build Docker Image to Aliyun
 
 on:
   push:
     branches: [ "master" ]
   # pull_request:
   #   branches: [ "master" ]
+env:
+  REGISTRY: registry.cn-chengdu.aliyuncs.com
+  NAMESPACE: mirror_d
+  ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
+  ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
 
 jobs:
 
@@ -15,27 +20,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       run: |
-        registry="registry.cn-chengdu.aliyuncs.com"
-        namespace=mirror_d
-        docker login -u du_peng -p dupeng01 $registry
+        
+        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
         
         # check version
         python3 check_image_version.py
         
         # build on arm64
-        cat to_pull.txt | grep -v ^# | awk '{print "docker pull --platform linux/arm64 " $1}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker pull --platform linux/arm64 " $1}' | sh
-        cat to_pull.txt | grep -v ^# | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-arm64"}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-arm64"}' | sh
-        cat to_pull.txt | grep -v ^# | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-arm64"}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-arm64"}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/arm64 " $1}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/arm64 " $1}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}' | sh
   
         # build on amd64/x86-64
-        cat to_pull.txt | grep -v ^# | awk '{print "docker pull --platform linux/amd64 " $1}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker pull --platform linux/amd64 " $1}' | sh
-        cat to_pull.txt | grep -v ^# | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-amd64"}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-amd64"}' | sh
-        cat to_pull.txt | grep -v ^# | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-amd64"}'
-        cat to_pull.txt | grep -v ^# | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-amd64"}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/amd64 " $1}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/amd64 " $1}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}' | sh
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}'
+        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}' | sh
