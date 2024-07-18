@@ -2,6 +2,8 @@ image_tags = open('./to_pull.txt').readlines()
 
 for tag in image_tags:
     tag = tag.strip()
+    if len(tag) == 0:
+        continue
     source_tag = tag.split(' ')[0]
     target_tag = tag.split(' ')[1]
     if not source_tag.startswith('#'):

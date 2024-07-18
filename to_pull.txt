@@ -5,3 +5,6 @@ starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
 
 mysql:8.4 mysql:8.4
 
+
+abc ddd
+
