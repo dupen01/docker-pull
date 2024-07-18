@@ -1,3 +1,7 @@
-python:3.12.4-slim-bullseye python:3.12.4-slim-bullseye
-# https://quay.io/repository/minio/minio?tab=tags
-quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z minio:20240716
+starrocks/fe-ubuntu:3.2.9 starrocks:fe-3.2.9
+starrocks/be-ubuntu:3.2.9 starrocks:be-3.2.9
+starrocks/cn-ubuntu:3.2.9 starrocks:cn-3.2.9
+starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
+
+mysql:8.4 mysql:8.4
+
