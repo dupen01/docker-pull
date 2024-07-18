@@ -18,16 +18,21 @@ jobs:
       # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
       run: |
         registry="registry.cn-chengdu.aliyuncs.com"
-        namespace=duperl
+        namespace=mirror_d
         docker login -u du_peng -p dupeng01 $registry
         
-        # arm64
+        # check version
+        python3 check_image_version.py
+        
+        # build on arm64
         cat to_pull.txt | awk '{print "docker pull --platform linux/arm64 " $1}'
         cat to_pull.txt | awk '{print "docker pull --platform linux/arm64 " $1}' | sh
         cat to_pull.txt | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-arm64"}'
         cat to_pull.txt | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-arm64"}' | sh
-
-        # amd64/x86-64
+        cat to_pull.txt | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-arm64"}'
+        cat to_pull.txt | awk '{print "docker push " "'"$registry/$namespace/"'" $2 "-arm64"}' | sh
+  
+        # build on amd64/x86-64
         cat to_pull.txt | awk '{print "docker pull --platform linux/amd64 " $1}'
         cat to_pull.txt | awk '{print "docker pull --platform linux/amd64 " $1}' | sh
         cat to_pull.txt | awk '{print "docker tag " $1 " '"$registry/$namespace/"'" $2 "-amd64"}'
