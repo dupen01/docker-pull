@@ -1,0 +1,2 @@
+python:3.12.4-slim-bullseye python:3.12.4-slim-bullseye
+quay.io/minio/minio minio
