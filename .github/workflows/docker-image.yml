@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
   # pull_request:
   #   branches: [ "master" ]
-env:
+#env:
 #  REGISTRY: registry.cn-chengdu.aliyuncs.com
 #  NAMESPACE: mirror_d
 #  ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
