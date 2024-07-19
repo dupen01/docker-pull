@@ -26,10 +26,10 @@ def send_email_to(receivers, _topic, mail_contents):
         server.login(my_sender, mail_pass)
         server.sendmail(my_sender, receivers, message.as_string())
         server.quit()
-        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + ":发送成功")
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + ":邮件发送成功")
     except smtplib.SMTPException:
         ret = False
-        print("发送失败")
+        print("邮件发送失败")
     return ret, time.time()
 
 
