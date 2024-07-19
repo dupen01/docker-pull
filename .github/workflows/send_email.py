@@ -38,7 +38,7 @@ receiver = "dunett@163.com"
 topic = "[docker-pull]Images pushed to Aliyun succeed"
 content = 'test'
 
-image_lines = open('to_pull.txt').readlines()
+image_lines = open('images_to_copy.txt').readlines()
 images = ['images pushed to Aliyun Registry:']
 registry = os.environ.get('REGISTRY')
 namespace = os.environ.get('NAMESPACE')
@@ -51,6 +51,9 @@ for line in image_lines:
     source_img = images[0]
     target_img = images[1] if len(images) > 1 else source_img
     target_img_fullname = f"{registry}/{namespace}/{target_img}"
-    images.append(f"{source_img} -> {target_img_fullname}")
+    arm_img_name = target_img_fullname + "-arm64"
+    amd_img_name = target_img_fullname + "-amd64"
+    images.append(f"{source_img} -> {arm_img_name}")
+    images.append(f"{source_img} -> {amd_img_name}")
 
 send_email_to(receiver, topic, "\n\n".join(images))
