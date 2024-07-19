@@ -5,18 +5,18 @@ image_lines = open('to_pull.txt').readlines()
 registry = os.environ.get('REGISTRY')
 namespace = os.environ.get('NAMESPACE')
 
-daemon_txt = """{
-  "features": {
-    "containerd-snapshotter": true
-  }
-}"""
-
-with open('/etc/docker/daemon.json', 'w') as f:
-    f.write(daemon_txt)
-
-ret1 = os.system("systemctl restart docker")
-if ret1 != 0:
-    sys.exit(ret1 >> 8)
+# daemon_txt = """{
+#   "features": {
+#     "containerd-snapshotter": true
+#   }
+# }"""
+#
+# with open('/etc/docker/daemon.json', 'w') as f:
+#     f.write(daemon_txt)
+#
+# ret1 = os.system("systemctl restart docker")
+# if ret1 != 0:
+#     sys.exit(ret1 >> 8)
 
 
 for line in image_lines:
@@ -39,13 +39,14 @@ for line in image_lines:
         f.write(dockerfile)
 
     target_img_fullname = f"{registry}/{namespace}/{target_img}"
+    arm_img_name = target_img_fullname + "-arm64"
+    amd_img_name = target_img_fullname + "-amd64"
 
-    build_cmd = f"""
-    docker build --platform=linux/amd64,linux/arm64 \
-    -t {target_img_fullname} --push \
-    -f {dockerfile_path} .
+    build_cmd1 = f"""
+    docker build --platform=linux/amd64 -t {amd_img_name} --push -f {dockerfile_path} . && \
+    docker build --platform=linux/arm64 -t {arm_img_name} --push -f {dockerfile_path} .
     """
-    print(build_cmd)
-    ret = os.system(build_cmd)
+    print(build_cmd1)
+    ret = os.system(build_cmd1)
     if ret != 0:
         sys.exit(ret >> 8)

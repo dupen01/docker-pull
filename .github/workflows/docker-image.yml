@@ -19,11 +19,9 @@ jobs:
 
     steps:
     - name: Build the Docker images
+    - uses: actions/checkout@v4
       run: |
-        whoami
-        pwd
-        cat /etc/docker/daemon.json
-        ls -l ./
+        
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
         
         # build images
