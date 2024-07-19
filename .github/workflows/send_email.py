@@ -1,3 +1,4 @@
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
@@ -37,16 +38,19 @@ receiver = "dunett@163.com"
 topic = "[docker-pull]Images pushed to Aliyun succeed"
 content = 'test'
 
-image_tags = open('to_pull.txt').readlines()
+image_lines = open('to_pull.txt').readlines()
 images = ['images pushed to Aliyun Registry:']
+registry = os.environ.get('REGISTRY')
+namespace = os.environ.get('NAMESPACE')
 image_prefix = "registry.cn-chengdu.aliyuncs.com/mirror_d"
-for tag in image_tags:
-    tag = tag.strip()
-    if len(tag) == 0 or tag.startswith('#'):
+for line in image_lines:
+    line = line.strip()
+    if len(line) == 0 or line.startswith('#'):
         continue
-    source_tag = tag.split(' ')[0]
-    target_tag = tag.split(' ')[1]
-    images.append(f"{source_tag} -> {image_prefix}/{target_tag}-arm64")
-    images.append(f"{source_tag} -> {image_prefix}/{target_tag}-amd64")
+    images = line.split(' ')
+    source_img = images[0]
+    target_img = images[1] if len(images) > 1 else source_img
+    target_img_fullname = f"{registry}/{namespace}/{target_img}"
+    images.append(f"{source_img} -> {target_img_fullname}")
 
 send_email_to(receiver, topic, "\n\n".join(images))

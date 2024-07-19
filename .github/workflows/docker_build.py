@@ -26,7 +26,7 @@ for line in image_lines:
     target_img_fullname = f"{registry}/{namespace}/{target_img}"
 
     build_cmd = f"""
-    docker build --platform=linux/amd64,linux/arm64 \
+    docker buildx build --platform=linux/amd64,linux/arm64 \
     -t {target_img_fullname} --push \
     -f {dockerfile_path}
     """
