@@ -22,8 +22,8 @@ jobs:
       run: |
         whoami
         pwd
-        ls -l /etc/docker
         cat /etc/docker/daemon.json
+        ls -l ./
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
         
         # build images
