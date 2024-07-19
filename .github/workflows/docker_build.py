@@ -30,7 +30,7 @@ for line in image_lines:
     source_img_name = source_img.split(':')[0]
     source_img_version = source_img.split(':')[1] if source_img.split(':')[1] else 'latest'
 
-    dockerfile = f"FROM {source_img}"
+    dockerfile = f"FROM {source_img}\n"
     dockerfile_dir_path = f'/tmp/{source_img_name}/{source_img_version}'
     if not os.path.exists(dockerfile_dir_path):
         os.makedirs(dockerfile_dir_path)
