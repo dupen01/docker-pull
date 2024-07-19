@@ -27,9 +27,9 @@ for line in image_lines:
     target_img_fullname = f"{registry}/{namespace}/{target_img}"
 
     build_cmd = f"""
-    docker buildx build --platform=linux/amd64,linux/arm64 \
+    docker build --platform=linux/amd64,linux/arm64 \
     -t {target_img_fullname} --push \
-    -f {dockerfile_path}
+    -f {dockerfile_path} .
     """
     print(build_cmd)
     ret = os.system(build_cmd)
