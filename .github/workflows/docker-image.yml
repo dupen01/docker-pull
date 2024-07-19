@@ -35,7 +35,7 @@ jobs:
         cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}'
         cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}' | sh
   
-        # build on amd64/x86-64
+        # build on amd64
         cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/amd64 " $1}'
         cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/amd64 " $1}' | sh
         cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}'
