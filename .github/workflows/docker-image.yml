@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        name: Set up Dockerfile
+      - name: Set up Dockerfile
         run: |
 
       - name: Build and push
