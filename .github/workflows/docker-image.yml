@@ -24,20 +24,8 @@ jobs:
         
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
         
-        # check version
-        python3 .github/workflows/check_image_version.py
+        # build images
+        python3 .github/workflows/docker_build.py
         
-        set -ex
-        
-        # build on arm64
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/arm64 " $1}' | sh
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}' | sh
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-arm64"}' | sh
-  
-        # build on amd64
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker pull --platform linux/amd64 " $1}' | sh
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker tag " $1 " '"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}' | sh
-        cat to_pull.txt | sed '/^\s*$/d;/^#/d' | awk '{print "docker push " "'"$REGISTRY/$NAMESPACE/"'" $2 "-amd64"}' | sh
-
         # send notification
         python3 .github/workflows/send_email.py

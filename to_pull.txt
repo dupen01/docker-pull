@@ -8,6 +8,8 @@
 #mysql:8.4 mysql:8.4
 #postgres:16 postgres:16
 
-nginx:1.27.0 nginx:1.27.0
-openjdk:8-slim-bullseye openjdk:8-slim-bullseye
-busybox:1.36.1 busybox:1.36.1
+#nginx:1.27.0 nginx:1.27.0
+#openjdk:8-slim-bullseye openjdk:8-slim-bullseye
+#busybox:1.36.1 busybox:1.36.1
+
+alpine:3.20.1
