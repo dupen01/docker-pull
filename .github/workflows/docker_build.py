@@ -5,19 +5,6 @@ image_lines = open('to_pull.txt').readlines()
 registry = os.environ.get('REGISTRY')
 namespace = os.environ.get('NAMESPACE')
 
-# daemon_txt = """{
-#   "features": {
-#     "containerd-snapshotter": true
-#   }
-# }"""
-#
-# with open('/etc/docker/daemon.json', 'w') as f:
-#     f.write(daemon_txt)
-#
-# ret1 = os.system("systemctl restart docker")
-# if ret1 != 0:
-#     sys.exit(ret1 >> 8)
-
 
 for line in image_lines:
     line = line.strip()
