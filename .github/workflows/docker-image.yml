@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build the Docker images
     - uses: actions/checkout@v4
+    - name: Build the Docker images
       run: |
         
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
