@@ -1,4 +1,4 @@
-image_tags = open('./to_pull.txt').readlines()
+image_tags = open('to_pull.txt').readlines()
 
 for tag in image_tags:
     tag = tag.strip()
