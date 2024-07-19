@@ -1,4 +1,5 @@
 import os
+import sys
 
 image_lines = open('to_pull.txt').readlines()
 registry = os.environ.get('REGISTRY')
@@ -31,4 +32,6 @@ for line in image_lines:
     -f {dockerfile_path}
     """
     print(build_cmd)
-    os.system(build_cmd)
+    ret = os.system(build_cmd)
+    if ret != 0:
+        sys.exit(ret >> 8)
