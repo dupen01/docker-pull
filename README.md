@@ -1,17 +1,25 @@
 # docker-pull
 
 ## 使用：
-先删除`images_to_copy.txt`文件内容或用`#`将文件内容注释掉，添加自己需要pull的镜像
+### 1. fork 本项目
+### 2. 添加私有镜像仓库的用户名和密码 
+在项目`settings->Secrets and variables->Actions`添加私有仓库的用户名和密码。变量名使用：`REGISTRY_USER`和`REGISTRY_PASSWORD`，也可以在`registry_env.sh`文件内添加环境变量。
+### 3.配置私有镜像仓库的地址和命名空间 
+在`registry_env.sh`文件添加`REGISTRY`和`NAMESPACE`环境变量，分别是私有镜像仓库的地址和命名空间。
+### 4. 填写需要copy的镜像列表 
+在`images_to_copy.txt`文件内添加需要copy到私有仓库的镜像名，支持`#`注释。
 
 格式：`目标镜像:目标镜像版本 阿里云镜像名称:阿里云镜像版本`
 
-push到master，将在阿里云公开仓库生成 arm64 和 amd64 两个版本的镜像。
+如果不需要改写镜像名称或tag，可仅填写原始镜像名称和tag，例如
+```
+# quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z  minio:20240716
+nginx:1.27.0
+nginx
+```
 
-例如：
+### 5. push至master分支
+等待 GitHub Action workflow 构建完成。
 
-`python:3.12.4-slim-bullseye python:3.12.4-slim-bullseye`
+如果需要添加通知，可在 https://github.com/settings/notifications 地址将Action的通知策略的`Only notify for failed workflows`取消勾选，这样无论构建成功或失败都会收到通知。
 
-将push两个版本的镜像到阿里云镜像仓库：
-
-`registry.cn-chengdu.aliyuncs.com/mirror_d/python:3.12.4-slim-bullseye-amd64` 和  
-`registry.cn-chengdu.aliyuncs.com/mirror_d/python:3.12.4-slim-bullseye-arm64`

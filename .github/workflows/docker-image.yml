@@ -6,8 +6,8 @@ on:
   # pull_request:
   #   branches: [ "master" ]
 env:
-  ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
-  ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+  REGISTRY_USER: "${{ secrets.REGISTRY_USER }}"
+  REGISTRY_PASSWORD: "${{ secrets.REGISTRY_PASSWORD }}"
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
         run: |
           set -ex
           source registry_env.sh
-          docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
+          docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
           docker buildx create --name=container --driver=docker-container --use --bootstrap
 
           # build images
