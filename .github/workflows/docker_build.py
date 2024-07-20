@@ -31,13 +31,13 @@ for line in image_lines:
         f.write(dockerfile)
 
     target_img_fullname = f"{registry}/{namespace}/{target_img_name}:{target_img_version}"
-    arm_img_name = target_img_fullname + "-arm64"
-    amd_img_name = target_img_fullname + "-amd64"
 
-    build_cmd = f"""
-    docker build --platform=linux/amd64 -t {amd_img_name} --push -f {dockerfile_path} . && \
-    docker build --platform=linux/arm64 -t {arm_img_name} --push -f {dockerfile_path} .
-    """
+    # arm_img_name = target_img_fullname + "-arm64"
+    # amd_img_name = target_img_fullname + "-amd64"
+    # build_cmd = f"""
+    # docker build --platform=linux/amd64 -t {amd_img_name} --push -f {dockerfile_path} . && \
+    # docker build --platform=linux/arm64 -t {arm_img_name} --push -f {dockerfile_path} .
+    # """
 
     build_cmd_v2 = f"docker build -t {target_img_fullname} --push -f {dockerfile_path} ."
     ret = os.system(build_cmd_v2)
