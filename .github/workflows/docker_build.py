@@ -14,8 +14,9 @@ for line in image_lines:
     source_img = images[0]
     target_img = images[1] if len(images) > 1 else source_img
 
-    source_img_name = source_img.split(':')[0]
-    source_img_version = source_img.split(':')[1] if source_img.split(':')[1] else 'latest'
+    source_tag = source_img.split(':')
+    source_img_name = source_tag[0]
+    source_img_version = source_tag[1] if len(source_tag) > 1 else 'latest'
 
     dockerfile = f"FROM {source_img}\n"
     dockerfile_dir_path = f'/tmp/{source_img_name}/{source_img_version}'
