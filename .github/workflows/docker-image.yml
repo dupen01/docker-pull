@@ -22,6 +22,7 @@ jobs:
           set -ex
           source registry_env.sh
           docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
-          
-          # build images
+          docker buildx create --name=container --driver=docker-container --use --bootstrap
+
+        # build images
           python3 .github/workflows/docker_build.py
