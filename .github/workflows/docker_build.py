@@ -39,7 +39,12 @@ for line in image_lines:
     # docker build --platform=linux/arm64 -t {arm_img_name} --push -f {dockerfile_path} .
     # """
 
-    build_cmd_v2 = f"docker build -t {target_img_fullname} --platform=linux/amd64,linux/arm64 --push -f {dockerfile_path} ."
+    build_cmd_v2 = f"""docker build \
+    -t {target_img_fullname} \
+    --builder=container \
+    --platform=linux/amd64,linux/arm64 \
+    --push \
+    -f {dockerfile_path} ."""
     ret = os.system(build_cmd_v2)
     if ret != 0:
         sys.exit(ret >> 8)
