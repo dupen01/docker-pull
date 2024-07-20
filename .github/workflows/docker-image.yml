@@ -6,8 +6,6 @@ on:
   # pull_request:
   #   branches: [ "master" ]
 env:
-  REGISTRY: registry.cn-chengdu.aliyuncs.com
-  NAMESPACE: mirror_d
   ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
   ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
 
@@ -21,11 +19,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build the Docker images
         run: |
+          sh registry_env.sh
           
           docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
           
           # build images
           python3 .github/workflows/docker_build.py
-          
-#           send notification
-#          python3 .github/workflows/send_email.py

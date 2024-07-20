@@ -13,4 +13,6 @@
 #busybox:1.36.1 busybox:1.36.1
 
 #alpine:3.20.1
-python:3.9-slim-bullseye
+#python:3.9-slim-bullseye
+
+nginx
