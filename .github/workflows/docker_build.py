@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 image_lines = open('images_to_copy.txt').readlines()
@@ -8,6 +9,7 @@ namespace = os.environ.get('NAMESPACE')
 
 for line in image_lines:
     line = line.strip()
+    line = re.sub(r'\s+', ' ', line)
     if len(line) == 0 or line.startswith('#'):
         continue
     images = line.split(' ')
@@ -45,6 +47,7 @@ for line in image_lines:
     --platform=linux/amd64,linux/arm64 \
     --push \
     -f {dockerfile_path} ."""
-    ret = os.system(build_cmd_v2)
-    if ret != 0:
-        sys.exit(ret >> 8)
+    print(build_cmd_v2)
+    # ret = os.system(build_cmd_v2)
+    # if ret != 0:
+    #     sys.exit(ret >> 8)

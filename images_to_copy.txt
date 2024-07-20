@@ -1,8 +1,8 @@
-python:3.12.4-slim-bullseye
-python:3.9-slim-bullseye
-openjdk:8-slim-bullseye
+#python:3.12.4-slim-bullseye
+#python:3.9-slim-bullseye
+#openjdk:8-slim-bullseye
 
-# 改写镜像名称和tag
+# 改写tag
 quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z   minio:20240716
 
 starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
