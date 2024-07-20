@@ -47,7 +47,7 @@ for line in image_lines:
     --platform=linux/amd64,linux/arm64 \
     --push \
     -f {dockerfile_path} ."""
-    print(build_cmd_v2)
-    # ret = os.system(build_cmd_v2)
-    # if ret != 0:
-    #     sys.exit(ret >> 8)
+    os.system(f"echo {build_cmd_v2}")
+    ret = os.system(build_cmd_v2)
+    if ret != 0:
+        sys.exit(ret >> 8)
