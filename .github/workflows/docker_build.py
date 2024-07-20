@@ -38,10 +38,8 @@ for line in image_lines:
     docker build --platform=linux/amd64 -t {amd_img_name} --push -f {dockerfile_path} . && \
     docker build --platform=linux/arm64 -t {arm_img_name} --push -f {dockerfile_path} .
     """
-    if target_img_version == 'latest':
-        build_cmd_v2 = f"docker build -t {target_img_fullname} -t {registry}/{namespace}/{target_img_name} --push -f {dockerfile_path} ."
-    else:
-        build_cmd_v2 = f"docker build -t {target_img_fullname} --push -f {dockerfile_path} ."
+
+    build_cmd_v2 = f"docker build -t {target_img_fullname} --push -f {dockerfile_path} ."
     ret = os.system(build_cmd_v2)
     if ret != 0:
         sys.exit(ret >> 8)

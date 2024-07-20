@@ -1,18 +1,15 @@
-#python:3.12.4-slim-bullseye python:3.12.4-slim-bullseye
-#quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z minio:20240716
-#starrocks/fe-ubuntu:3.2.9 starrocks:fe-3.2.9
-#starrocks/be-ubuntu:3.2.9 starrocks:be-3.2.9
-#starrocks/cn-ubuntu:3.2.9 starrocks:cn-3.2.9
-#starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
+python:3.12.4-slim-bullseye
+python:3.9-slim-bullseye
+openjdk:8-slim-bullseye
 
-#mysql:8.4 mysql:8.4
-#postgres:16 postgres:16
+quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z minio:20240716
 
-#nginx:1.27.0 nginx:1.27.0
-#openjdk:8-slim-bullseye openjdk:8-slim-bullseye
-#busybox:1.36.1 busybox:1.36.1
+starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
 
-#alpine:3.20.1
-#python:3.9-slim-bullseye
+mysql:8.4
+postgres:16
 
+nginx:1.27.0
 nginx
+busybox:1.36.1
+alpine:3.20.1
