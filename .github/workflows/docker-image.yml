@@ -21,7 +21,7 @@ jobs:
         run: |
           set -ex
           sh registry_env.sh
-          
+          echo $REGISTRY
           docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $REGISTRY
           
           # build images
