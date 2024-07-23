@@ -21,7 +21,8 @@ jobs:
         run: |
           set -ex
           source registry_env.sh
-          docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+          # docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+          echo $REGISTRY_PASSWORD | docker login $REGISTRY -u $REGISTRY_USER --password-stdin
           docker buildx create --name=container --driver=docker-container --use --bootstrap
 
           # build images
