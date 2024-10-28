@@ -22,7 +22,14 @@ for line in image_lines:
 
     target_tag = target_img.split(':')
     target_img_name = target_tag[0]
+    name_lst = target_img_name.split('/')
+    if len(name_lst) > 1:
+        new_target_img_name = name_lst[-1]
+    else:
+        new_target_img_name = target_img_name
+
     target_img_version = target_tag[1] if len(target_tag) > 1 else 'latest'
+    target_full_name = new_target_img_name + ':' + target_img_version
 
     dockerfile = f"FROM {source_img}\n"
     dockerfile_dir_path = f'/tmp/{source_img_name}/{source_img_version}'
@@ -32,7 +39,7 @@ for line in image_lines:
     with open(f"{dockerfile_path}", 'w') as f:
         f.write(dockerfile)
 
-    target_img_fullname = f"{registry}/{namespace}/{target_img_name}:{target_img_version}"
+    target_img_fullname = f"{registry}/{namespace}/{target_full_name}"
 
     # arm_img_name = target_img_fullname + "-arm64"
     # amd_img_name = target_img_fullname + "-amd64"
