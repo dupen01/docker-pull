@@ -17,3 +17,5 @@
 #busybox
 #alpine:3.20.1
 
+prom/prometheus:2.55.0
+
