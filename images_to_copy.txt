@@ -19,4 +19,6 @@
 
 #prom/prometheus:v2.55.0 prometheus:v2.55.0
 
-prom/alertmanager:v0.27.0
+#prom/alertmanager:v0.27.0
+
+apache/dolphinscheduler-standalone-server:3.2.2
