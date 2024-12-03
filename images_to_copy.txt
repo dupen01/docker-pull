@@ -21,4 +21,6 @@
 
 #prom/alertmanager:v0.27.0
 
-apache/dolphinscheduler-standalone-server:3.2.2
+#apache/dolphinscheduler-standalone-server:3.2.2
+
+ghcr.io/astral-sh/uv:python3.13-bookworm-slim
