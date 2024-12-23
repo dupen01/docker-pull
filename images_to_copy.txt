@@ -16,11 +16,11 @@
 #starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
 
 # ----- Nginx -----
-#nginx:1.27.0
-#nginx
+//nginx:1.27.0
+nginx
 nginx:1.27.3-alpine
 
-# ----- Node -----
+// ----- Node -----
 # node:18-alpine
 23.5.0-alpine
 

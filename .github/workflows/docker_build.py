@@ -10,7 +10,7 @@ namespace = os.environ.get('NAMESPACE')
 for line in image_lines:
     line = line.strip()
     line = re.sub(r'\s+', ' ', line)
-    if len(line) == 0 or line.startswith('#'):
+    if len(line) == 0 or line.startswith(('#', '//', '--')):
         continue
     images = line.split(' ')
     source_img = images[0]
