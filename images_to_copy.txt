@@ -23,4 +23,6 @@
 
 #apache/dolphinscheduler-standalone-server:3.2.2
 
-ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+#ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+
+node:18-alpine
