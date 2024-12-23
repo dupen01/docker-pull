@@ -17,12 +17,13 @@
 
 # ----- Nginx -----
 //nginx:1.27.0
-nginx
-nginx:1.27.3-alpine
+//nginx
+//nginx:1.27.3-alpine
 
 // ----- Node -----
 # node:18-alpine
-23.5.0-alpine
+node:20-alpine
+node:23.5.0-alpine
 
 # ----- Base Linux -----
 #busybox:1.36.1
