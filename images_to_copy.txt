@@ -1,8 +1,9 @@
 # ----- Python -----
 #python:3.12.4-slim-bullseye
 #python:3.9-slim-bullseye
-python:3.13-slim-bookworm
+#python:3.13-slim-bookworm
 #ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+ghcr.io/astral-sh/uv:python3.13-alpine
 
 # ----- JDK -----
 #openjdk:8-slim-bullseye
@@ -10,27 +11,29 @@ python:3.13-slim-bookworm
 
 # ----- minIO -----
 #quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z   minio:20240716
-quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z   minio:20241218
+#quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z   minio:20241218
 
 # ----- SQL -----
 #mysql:8.4
 #postgres:16
 #starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
-starrocks/allin1-ubuntu:3.3.7 starrocks:allin1-3.3.7
+#starrocks/allin1-ubuntu:3.3.7 starrocks:allin1-3.3.7
+redis:7.4.2-alpine
+
 
 # ----- Nginx -----
 //nginx:1.27.0
-nginx
+#nginx
 //nginx:1.27.3-alpine
 
 // ----- Node -----
 # node:18-alpine
-node:20-alpine
-node:23.5.0-alpine
+#node:20-alpine
+#node:23.5.0-alpine
 
 # ----- Base Linux -----
 #busybox:1.36.1
-busybox
+#busybox
 #alpine:3.20.1
 
 # ----- Other -----
