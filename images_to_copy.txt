@@ -3,7 +3,7 @@
 #python:3.9-slim-bullseye
 #python:3.13-slim-bookworm
 #ghcr.io/astral-sh/uv:python3.13-bookworm-slim
-ghcr.io/astral-sh/uv:python3.13-alpine
+#ghcr.io/astral-sh/uv:python3.13-alpine
 
 # ----- JDK -----
 #openjdk:8-slim-bullseye
@@ -13,12 +13,12 @@ ghcr.io/astral-sh/uv:python3.13-alpine
 #quay.io/minio/minio:RELEASE.2024-07-16T23-46-41Z   minio:20240716
 #quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z   minio:20241218
 
-# ----- SQL -----
+# ----- DataBase -----
 #mysql:8.4
 #postgres:16
 #starrocks/allin1-ubuntu:3.2.9 starrocks:allin1-3.2.9
 #starrocks/allin1-ubuntu:3.3.7 starrocks:allin1-3.3.7
-redis:7.4.2-alpine
+#redis:7.4.2-alpine
 
 
 # ----- Nginx -----
@@ -40,3 +40,4 @@ redis:7.4.2-alpine
 #prom/prometheus:v2.55.0 prometheus:v2.55.0
 #prom/alertmanager:v0.27.0
 #apache/dolphinscheduler-standalone-server:3.2.2
+dbeaver/cloudbeaver:25.0.1  cloudbeaver:25.0.1
