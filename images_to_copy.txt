@@ -16,7 +16,7 @@
 # ----- DataBase -----
 #mysql:8.4
 #postgres:16
-starrocks/allin1-ubuntu:3.4.3 starrocks:allin1-3.4.3
+starrocks/allin1-ubuntu:3.5.1 starrocks:allin1-3.5.1
 #starrocks/allin1-ubuntu:3.3.7 starrocks:allin1-3.3.7
 #redis:7.4.2-alpine
 
