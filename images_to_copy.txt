@@ -3,7 +3,7 @@
 #python:3.9-slim-bullseye
 #python:3.13-slim-bookworm
 #ghcr.io/astral-sh/uv:python3.13-bookworm-slim
-ghcr.io/astral-sh/uv:python3.14-trixie-slim
+#ghcr.io/astral-sh/uv:python3.14-trixie-slim
 #ghcr.io/astral-sh/uv:python3.13-alpine
 
 # ----- JDK -----
@@ -42,3 +42,6 @@ ghcr.io/astral-sh/uv:python3.14-trixie-slim
 #prom/alertmanager:v0.27.0
 #apache/dolphinscheduler-standalone-server:3.2.2
 #dbeaver/cloudbeaver:25.0.1  cloudbeaver:25.0.1
+
+# 2026-07-07
+rustfs/rustfs

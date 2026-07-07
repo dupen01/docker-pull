@@ -7,9 +7,9 @@
 ## 使用：
 ### 1. fork 本项目
 ### 2. 添加私有镜像仓库的用户名和密码 
-在项目`settings->Secrets and variables->Actions`添加私有仓库的用户名和密码。变量名使用：`REGISTRY_USER`和`REGISTRY_PASSWORD`，也可以在`registry_env.sh`文件内添加环境变量。
+在项目`settings->Secrets and variables->Actions`添加私有仓库的用户名和密码。变量名使用：`REGISTRY_USER`和`REGISTRY_PASSWORD`，也可以在`.env`文件内添加环境变量。
 ### 3.配置私有镜像仓库的地址和命名空间 
-在`registry_env.sh`文件添加`REGISTRY`和`NAMESPACE`环境变量，分别是私有镜像仓库的地址和命名空间。
+在`.env`文件添加`REGISTRY`和`NAMESPACE`环境变量，分别是私有镜像仓库的地址和命名空间。
 ### 4. 填写需要copy的镜像列表 
 在`images_to_copy.txt`文件内添加需要copy到私有仓库的镜像名，支持 `#`, `//`, `--` 注释。
 
