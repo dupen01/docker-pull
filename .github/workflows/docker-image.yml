@@ -6,8 +6,8 @@ on:
   # pull_request:
   #   branches: [ "master" ]
 env:
-  REGISTRY: "${{ env.REGISTRY }}"
-  NAMESPACE: "${{ env.NAMESPACE }}"
+  REGISTRY: "${{ vars.REGISTRY }}"
+  NAMESPACE: "${{ vars.NAMESPACE }}"
   REGISTRY_USER: "${{ secrets.REGISTRY_USER }}"
   REGISTRY_PASSWORD: "${{ secrets.REGISTRY_PASSWORD }}"
   
