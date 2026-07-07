@@ -18,17 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Load .env
-        shell: bash
-        run: |
-          if [ -f .env ]; then
-            source .env
-          fi
-
       - name: Build the Docker images
         run: |
           set -ex
-          # docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
           echo $REGISTRY_PASSWORD | docker login $REGISTRY -u $REGISTRY_USER --password-stdin
           docker buildx create --name=container --driver=docker-container --use --bootstrap
 
